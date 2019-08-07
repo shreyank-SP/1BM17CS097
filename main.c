@@ -20,10 +20,9 @@ void main()
 	while(f<=l)
 	{ 	mid=(f+l)/2;
 	  if(ele==arr[mid])
-	  {  flag=1;
-	  printf("1");
+	  {  
+		flag=1;
 		break;
-	
 	  }
 	  else if(ele>arr[mid])
 	  {
@@ -36,10 +35,14 @@ void main()
 	  
 	}
 	
-	if(flag==0)
+	if(flag==1)
 	{
-		printf("-1\n");
+		printf("1\n");
 	}
+         else
+	        printf("-1\n");
+		
+        flag=0;		
 	
 	
  }
