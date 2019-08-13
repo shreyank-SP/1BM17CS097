@@ -6,7 +6,10 @@ def fibo(n):
     elif n==2:
          print(str(a)+" , " +str(b),end="");
     else :
-         print(str(a)+" , "+str(b),end="")
+         if(n<=0):
+              print("Incorrect nummber ")
+         else :
+              print(str(a)+" , "+str(b),end="")
     for i in range(2,int(n)):
              sum=a+b
              a=b
