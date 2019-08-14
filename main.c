@@ -1,35 +1,49 @@
 #include <stdio.h>
-int binarys(int a);
 
-
-
-int main()
-{
-	int x,n;
-	printf("Enter a number to find the square root");
-	scanf("%d",&x);
-	n=binarys(x);
-	printf("Square root of %d is  %d \n",x,n);
-	return 0;
-}
-int binarys(int a)
-{
-	int mid,low=0,high,result,y;
-	high=a-1;
-	while(low<=high)
+void main()
+{   int tc,i,j,N,f,l,ele,mid,arr[10],flag=0;
+	
+	scanf("%d",&tc);
+	printf("\n");
+	for(j=0;j<tc;j++)
 	{
-		mid=(low+high)/2 ;
-		y=mid*mid ;
-		if(y==a)
-			 return mid ;
-		else if(y<a)
-			{low=mid+1;
-			result=mid;
-			}
-			
-		else
-			high=mid-1;
+
+	scanf("%d%d",&N,&ele);
+	   for(i=0;i<N;i++)
+   {
+	   scanf("%d",&arr[i]);
+   }
+   
+	f=0;l=N;
+    
+	while(f<=l)
+	{ 	mid=(f+l)/2;
+	  if(ele==arr[mid])
+	  {  
+		flag=1;
+		break;
+	  }
+	  else if(ele>arr[mid])
+	  {
+		  f=mid+1;
+	  }	
+	  else
+	  {
+		  l=mid-1;
+	  }
+	  
 	}
-	return result;
+	
+	if(flag==1)
+	{
+		printf("1\n");
+	}
+         else
+	        printf("-1\n");
+		
+        flag=0;		
+	
+	
+ }
 }
 
