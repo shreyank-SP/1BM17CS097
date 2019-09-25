@@ -1,97 +1,79 @@
-  #include<iostream>#define N 4 
-2
-#include <stdbool.h> 
-3
-#include <stdio.h> 
-4
-​
-5
-void printSolution(int board[N][N]) 
-6
+
+#include <iostream> 
+#include <list> 
+#include <stack> 
+using namespace std; 
+
+class Graph { 
+	int V; 
+
+	list<int>* adj; 
+
+	void topologicalSortUtil(int v, bool visited[], stack<int>& Stack); 
+
+public: 
+	Graph(int V); 
+
+	void addEdge(int v, int w); 
+
+	void topologicalSort(); 
+}; 
+
+Graph::Graph(int V) 
 { 
-7
-        for (int i = 0; i < N; i++) { 
-8
-                for (int j = 0; j < N; j++) 
-9
-                        printf(" %d ", board[i][j]); 
-10
-                printf("\n"); 
-11
-        } 
-12
+	this->V = V; 
+	adj = new list<int>[V]; 
 } 
-13
-​
-14
-bool isSafe(int board[N][N], int row, int col) 
-15
+
+void Graph::addEdge(int v, int w) 
 { 
-16
-        int i, j; 
-17
-​
-18
-        for (i = 0; i < col; i++) 
-19
-                if (board[row][i]) 
-20
-                        return false; 
-21
-​
-22
-        for (i = row, j = col; i >= 0 && j >= 0; i--, j--) 
-23
-                if (board[i][j]) 
-24
-                        return false; 
-25
-​
-26
-        for (i = row, j = col; j >= 0 && i < N; i++, j--) 
-27
-                if (board[i][j]) 
-28
-                        return false; 
-29
-​
-30
-        return true; 
-31
+	adj[v].push_back(w); 
 } 
-32
-​
-33
-​
-34
-bool solveNQUtil(int board[N][N], int col) 
-35
+
+void Graph::topologicalSortUtil(int v, bool visited[], 
+								stack<int>& Stack) 
 { 
-36
-        if (col >= N) 
-37
-                return true; 
-38
-​
-39
-        for (int i = 0; i < N; i++) { 
-40
-​
-41
-                if (isSafe(board, i, col)) { 
-42
-​
-43
-                        board[i][col] = 1; 
-44
-                        if (solveNQUtil(board, col + 1)) 
-45
-                                return true; 
-46
-​
-47
-                        board[i][col] = 0; 
-48
-                } 
-49
-        } 
+ 
+	visited[v] = true; 
+
+	list<int>::iterator i; 
+	for (i = adj[v].begin(); i != adj[v].end(); ++i) 
+		if (!visited[*i]) 
+			topologicalSortUtil(*i, visited, Stack); 
+
+	Stack.push(v); 
+} 
+
+void Graph::topologicalSort() 
+{ 
+	stack<int> Stack; 
+
+	bool* visited = new bool[V]; 
+	for (int i = 0; i < V; i++) 
+		visited[i] = false; 
+
+	for (int i = 0; i < V; i++) 
+		if (visited[i] == false) 
+			topologicalSortUtil(i, visited, Stack); 
+
+	while (Stack.empty() == false) { 
+		cout << Stack.top() << " "; 
+		Stack.pop(); 
+	} 
+} 
+
+int main() 
+{ 
+
+	Graph g(6); 
+	g.addEdge(5, 2); 
+	g.addEdge(5, 0); 
+	g.addEdge(4, 0); 
+	g.addEdge(4, 1); 
+	g.addEdge(2, 3); 
+	g.addEdge(3, 1); 
+
+	g.topologicalSort(); 
+
+	return 0; 
+} 
