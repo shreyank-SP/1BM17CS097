@@ -1,0 +1,83 @@
+class matches
+{
+    def __init__(self,team,cn,mp,mw)
+    {
+        self.team=team
+        self.cn=cn
+        self.mp=mp
+        self.mw=mw
+    }
+    def make_dict()
+    {
+        dict1={}
+        dict1[cn]=[self.team,self.mp,self.mw]
+    }
+
+    def find_matches(self,country_name)
+    {   a=dict1[country_name]
+        print(country_name +"has played in "+a[0] )
+        print(country_name +" has played " +a[1])
+        print(country_name +" has won " +a[2])   
+    }
+    def find_winner(country1,country2)
+    {
+        lista=dict1[country1]
+        listb=dict1[country2]
+
+        a=lista[3]
+        b=listb[3]
+
+        if(a==b):
+           print("Tie")class matches
+{
+    def __init__(self,team,cn,mp,mw)
+    {
+        self.team=team
+        self.cn=cn
+        self.mp=mp
+        self.mw=mw
+    }
+    def make_dict()
+    {
+        dict1={}
+        dict1[cn]=[self.team,self.mp,self.mw]
+    }
+
+    def find_matches(self,country_name)
+    {   a=dict1[country_name]
+        print(country_name +"has played in "+a[0] )
+        print(country_name +" has played " +a[1])
+        print(country_name +" has won " +a[2])   
+    }
+    def find_winner(country1,country2)
+    {
+        lista=dict1[country1]
+        listb=dict1[country2]
+
+        a=lista[3]
+        b=listb[3]
+
+        if(a==b):
+           print("Tie")
+        elif (a>b):
+            print(country1 +" is the winner")
+        else:
+        print(country2 +" is the winner")
+    }
+}
+match_detail1="AUS:CHAM:5:2"
+match_detail2=
+
+
+          
+        elif (a>b):
+            print(country1 +" is the winner")
+        else:
+        print(country2 +" is the winner")
+    }
+}
+match_detail1="AUS:CHAM:5:2"
+match_detail2=
+
+
+          
